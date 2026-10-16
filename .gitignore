@@ -1,0 +1,13 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 虚拟环境
+.venv/
+venv/
+
+# 个人待办数据
+todos.json
+
+# 临时文件
+*.tmp
