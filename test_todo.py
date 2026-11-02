@@ -72,7 +72,7 @@ class TodoTests(unittest.TestCase):
     def test_cli_and_failed_save(self):
         inputs = ["x", "1", "，内容", "A，内容，学习", "exit",
                   "2", "abc", "2", "99", "2", "1", "x",
-                  "2", "1", "2", "5", "1", "新标题", "4"]
+                  "2", "1", "2", "4", "1", "新标题", "5"]
         with patch("builtins.input", side_effect=inputs):
             with contextlib.redirect_stdout(io.StringIO()) as output:
                 main.main()
@@ -87,7 +87,7 @@ class TodoTests(unittest.TestCase):
         self.assertNotIn("状态修改成功", output.getvalue())
         self.assertEqual(self.path.read_bytes(), before)
         self.assertFalse(self.path.with_name("todos.json.tmp").exists())
-        with patch("builtins.input", side_effect=["3", "1", "4"]):
+        with patch("builtins.input", side_effect=["3", "1", "5"]):
             with contextlib.redirect_stdout(io.StringIO()):
                 main.main()
         self.assertEqual(TodoList.load().tasks, {})

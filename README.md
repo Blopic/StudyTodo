@@ -1,4 +1,3 @@
-# Created by Chatgpt
 # 命令行待办清单 
 
 使用 Python 3 在项目目录运行 `python main.py`。仅使用标准库，无需安装依赖。
@@ -32,3 +31,18 @@
 保存失败时，修改仍在内存中；排除权限或磁盘问题后再次保存，成功后再退出。强制关闭会丢失尚未保存的修改。读取到损坏 JSON 或无效任务数据时会提示并停止启动，避免覆盖原文件。此练习不支持多个进程同时修改数据。
 
 运行验证：`python -B -m unittest -v`。测试使用临时目录，不会修改已有待办数据。
+
+## 第四周 FastAPI 作业
+
+本周新增独立的 HTTP API，入口为 `api.main:app`，提供任务的新增、查询、筛选、部分修改和删除。API 使用内存存储，服务重启后数据会清空；原有 `python main.py` 命令行与 JSON 持久化功能继续保留。
+
+安装依赖并启动 API：
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m uvicorn api.main:app --reload
+```
+
+打开 `http://127.0.0.1:8000/docs` 进行接口操作，运行 `python -m unittest -v` 验证 CRUD、校验、状态码和错误响应。逐日任务方向、接口表和 Git 练习见 [WEEK4.md](WEEK4.md)。
